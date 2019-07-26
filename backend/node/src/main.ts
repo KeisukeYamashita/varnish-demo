@@ -3,16 +3,13 @@ import {Request, Response} from 'express';
 import path from 'path';
 const app = express();
 
-
-app.get('/endpoint', (req:Request, res:Response)=>{
-    res.sendFile(path.resolve(__dirname + '/../public/index.html'))
-})
-
-app.get('/lazy-endpoint', (req:Request, res:Response)=>{
+app.use((req, res, next)=>{
     setTimeout(() => {
-        res.sendFile(path.resolve(__dirname + '/../public/index.html'))
-    }, 1000);
+        next()
+    }, 2000)
 })
+
+app.use(express.static("public"));
 
 app.listen(8000, async () => {
     console.log('node server is listening at port 8000');
