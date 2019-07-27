@@ -1,10 +1,10 @@
 import express from 'express';
 import {Request, Response} from 'express';
-import path from 'path';
 const app = express();
 
-app.use((req, res, next)=>{
+app.use((req:Request, res:Response, next)=>{
     setTimeout(() => {
+        res.header('Cache-Control', 'public, max-age=180')
         next()
     }, 2000)
 })

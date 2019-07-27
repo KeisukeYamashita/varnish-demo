@@ -15,7 +15,7 @@ vcl 4.0;
 # Default backend definition. Set this to point to your content server.
 backend default {
     .host = "127.0.0.1";
-    .port = "8080";
+    .port = "8000";
 }
 
 sub vcl_recv {
@@ -23,6 +23,7 @@ sub vcl_recv {
     #
     # Typically you clean up the request here, removing cookies you don't need,
     # rewriting the request, etc.
+    unset req.http.Cookie;
 }
 
 sub vcl_backend_response {
