@@ -1,3 +1,5 @@
+currentDir:=$(shell pwd)
+
 .PHONY: init
 init: init-node 
 
@@ -16,4 +18,4 @@ start-node:
 
 .PHONY: start-varnish
 start-varnish:
-	/usr/local/sbin/varnishd -n /usr/local/var/varnish -f varnish/conf.vcl -s malloc,1G -T 127.0.0.1:2000 -a 0.0.0.0:8080 -F
+	/usr/local/sbin/varnishd -n /usr/local/var/varnish -f ${currentDir}/varnish/conf.vcl -s malloc,1G -T 127.0.0.1:2000 -a 0.0.0.0:8080 -F
